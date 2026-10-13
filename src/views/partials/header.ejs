@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %> — Express Views</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href="/">Express Views</a>
+      <div class="nav-links">
+        <a href="/users" class="<%= section === 'users' ? 'active' : '' %>">Користувачі</a>
+        <a href="/articles" class="<%= section === 'articles' ? 'active' : '' %>">Статті</a>
+      </div>
+      <% if (currentUser) { %>
+        <div class="user-chip">
+          <span><%= currentUser.username %></span>
+          <span class="badge badge-<%= currentUser.role %>"><%= currentUser.role %></span>
+        </div>
+      <% } %>
+    </div>
+  </nav>
+  <main class="container">

@@ -1,15 +1,34 @@
 import * as User from '../models/userModel.js';
+import * as Article from '../models/articleModel.js';
 
+// Текстовий формат — для POST/PUT/DELETE (відповіді сервера залишаються текстовими).
 const format = user => `#${user.id} ${user.username} (${user.role})`;
 
+// У шаблони НІКОЛИ не передаємо пароль — лише безпечні поля.
+const toView = ({ id, username, role }) => ({ id, username, role });
+
+/** GET /users — сторінка зі списком користувачів (PUG). */
 export function list(req, res) {
-  res.send(User.getAll().map(format).join('\n'));
+  res.type('html').render('users/list.pug', {
+    title: 'Користувачі',
+    section: 'users',
+    users: User.getAll().map(toView),
+  });
 }
 
+/** GET /users/:userId — сторінка з деталями користувача (PUG). */
 export function getOne(req, res) {
   const user = User.getById(Number(req.params.userId));
   if (!user) return res.status(404).send('Користувача не знайдено.');
-  res.send(format(user));
+
+  const articles = Article.getAll().filter(article => article.authorId === user.id);
+
+  res.type('html').render('users/details.pug', {
+    title: user.username,
+    section: 'users',
+    person: toView(user),
+    articles,
+  });
 }
 
 export function create(req, res) {

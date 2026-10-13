@@ -1,5 +1,8 @@
 import * as User from '../models/userModel.js';
 
+// У шаблони передаємо лише безпечні поля (без пароля).
+const publicUser = ({ id, username, role }) => ({ id, username, role });
+
 /**
  * Автентифікація + сесії.
  * 1) Якщо в сесії вже є userId — користувач автентифікований.
@@ -13,6 +16,7 @@ export function authenticate(req, res, next) {
     const sessionUser = User.getById(req.session.userId);
     if (sessionUser) {
       req.user = sessionUser;
+      res.locals.currentUser = publicUser(sessionUser); // доступний у PUG/EJS-шаблонах
       return next();
     }
     // користувача видалили — сесія застаріла
@@ -41,6 +45,7 @@ export function authenticate(req, res, next) {
 
   req.session.userId = user.id;
   req.user = user;
+  res.locals.currentUser = publicUser(user); // доступний у PUG/EJS-шаблонах
   next();
 }
 

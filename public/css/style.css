@@ -1,0 +1,193 @@
+:root {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #4f46e5;
+  --primary-soft: #eef2ff;
+  --border: #e5e7eb;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(15, 23, 42, 0.08), 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---------- Навігація ---------- */
+.navbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.brand { font-weight: 700; font-size: 1.1rem; color: var(--text); }
+.brand:hover { text-decoration: none; }
+
+.nav-links { display: flex; gap: 8px; flex: 1; }
+.nav-links a {
+  color: var(--muted);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  background: var(--primary-soft);
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.user-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ---------- Контент ---------- */
+.container {
+  flex: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 32px auto;
+  padding: 0 20px;
+}
+
+h1 { margin: 0 0 8px; font-size: 1.8rem; line-height: 1.25; }
+h2 { margin: 32px 0 12px; font-size: 1.25rem; }
+
+.subtitle { margin: 0 0 20px; color: var(--muted); }
+.empty { color: var(--muted); font-style: italic; }
+
+.back-link { display: inline-block; margin-bottom: 16px; font-weight: 500; }
+
+/* ---------- Таблиця ---------- */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.table th,
+.table td { padding: 14px 18px; text-align: left; }
+.table thead th {
+  background: #f9fafb;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+.table tbody tr + tr td { border-top: 1px solid var(--border); }
+.table tbody tr:hover { background: #fafbff; }
+
+/* ---------- Бейджі ---------- */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #e5e7eb;
+  color: #374151;
+}
+.badge-admin { background: #fee2e2; color: #b91c1c; }
+.badge-user { background: #dcfce7; color: #15803d; }
+.badge-id { background: var(--primary-soft); color: var(--primary); }
+
+/* ---------- Картки ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+.cards .card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+.cards .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+}
+.card h2 { margin: 0 0 8px; font-size: 1.15rem; }
+.excerpt { margin: 0 0 14px; color: #4b5563; }
+.meta { margin: 0; font-size: 0.9rem; color: var(--muted); }
+
+.details .details-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.details .details-head h1 { margin: 0; }
+
+.props {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 8px 24px;
+  margin: 0;
+}
+.props dt { color: var(--muted); font-weight: 500; }
+.props dd { margin: 0; }
+
+.article-body {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  white-space: pre-wrap;
+  font-size: 1.05rem;
+}
+
+.link-list { padding-left: 20px; }
+.link-list li { margin: 6px 0; }
+
+/* ---------- Футер ---------- */
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.footer p { margin: 0; }
+
+/* ---------- Мобільні пристрої ---------- */
+@media (max-width: 600px) {
+  .navbar-inner { gap: 12px; padding: 0 12px; }
+  .brand { display: none; }
+  .container { margin: 20px auto; }
+  h1 { font-size: 1.5rem; }
+  .table th, .table td { padding: 10px 12px; }
+}

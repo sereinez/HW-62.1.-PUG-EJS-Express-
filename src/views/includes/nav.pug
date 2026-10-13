@@ -1,0 +1,10 @@
+nav.navbar
+  .navbar-inner
+    a.brand(href="/") Express Views
+    .nav-links
+      a(href="/users", class=(section === 'users' ? 'active' : '')) Користувачі
+      a(href="/articles", class=(section === 'articles' ? 'active' : '')) Статті
+    if currentUser
+      .user-chip
+        span= currentUser.username
+        span.badge(class=`badge-${currentUser.role}`)= currentUser.role

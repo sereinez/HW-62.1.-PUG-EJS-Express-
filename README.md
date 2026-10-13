@@ -1,9 +1,4 @@
-# express-middleware-app
 
-Навчальний сервер на **Node.js + Express.js** з мідлварами для логування, автентифікації,
-валідації даних, перевірки прав доступу, керування сесіями та обробки помилок.
-Проєкт побудований за патерном **MVC** (Model — View — Controller). Усі відповіді
-сервера — **текстові** (`text/plain`).
 
 ## Можливості
 
@@ -181,16 +176,3 @@ curl.exe -u user:user123 -X PUT http://localhost:3000/articles/1 -H "Content-Typ
 curl.exe -c cookies.txt -u user:user123 http://localhost:3000/users/2   # вхід, збереження cookie
 curl.exe -b cookies.txt http://localhost:3000/users/2                   # без пароля, по cookie
 ```
-
-## Публікація в Git
-
-```bash
-git init
-git add .
-git commit -m "Express server with middlewares (MVC)"
-git branch -M main
-git remote add origin <URL-вашого-репозиторію>
-git push -u origin main
-```
-#   H W - 6 1 . 1 . - E x p r e s s -  
- 
